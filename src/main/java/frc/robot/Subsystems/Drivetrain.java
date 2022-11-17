@@ -13,6 +13,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.math.controller.PIDController;
@@ -141,11 +142,12 @@ public class Drivetrain {
             thetaController, 
             this::setModuleStates, 
             this);
+            //god dammit it's doing this again
 
         // 5. add new init and wrap-up, and return everything
         return new SequentialCommandGroup(
             new InstantCommand(() ->  resetOdometry(trajectory.getInitialPose()),
-            swerveControllerCommand,
+            command,
             new InstantCommand(() -> stopModules()));
             //idk why there is an error here?
     }
